@@ -8,7 +8,7 @@ resource "aws_route_table" "public_route_table" {
 
   tags = {
     name      = "public-route-table"
-    terraform = "true" # 
+    terraform = "true"
   }
 }
 
