@@ -9,14 +9,14 @@ terraform {
   backend "s3" {
     bucket         = "tf-state-bucket"
     key            = "terraform/state"
-    region         = "us-east-1"
+    region         = "eu-west-2"
     dynamodb_table = "terraform-lock"
     encrypt        = true
   }
 }
 
 provider "aws" {
-  region = "eu-west-1"
+  region = "eu-west-2"
 }
 
 data "aws_availability_zones" "available" {}
