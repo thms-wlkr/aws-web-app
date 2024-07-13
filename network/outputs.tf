@@ -3,7 +3,7 @@ output "vpc_id" {
 }
 
 output "public_subnet_ids" {
-  value = aws_subnet.public_subnets[*].id
+  value = aws_subnet.public_subnet[*].id
 }
 
 output "private_subnet_ids_1" {
@@ -14,10 +14,10 @@ output "private_subnet_ids_2" {
   value = aws_subnet.demo_priv_subnet_2[*].id
 }
 
-output "ec2_instance_id" {
-  value = aws_instance.web_server.id
+output "public_sg_id" {
+  value = aws_security_group.public_sg.id
 }
 
-output "lb_dns_name" {
-  value = aws_lb.app_lb.dns_name
+output "backend_sg_id" {
+  value = aws_security_group.backend_sg.id
 }

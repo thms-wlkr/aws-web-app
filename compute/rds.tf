@@ -19,7 +19,7 @@ resource "aws_db_instance" "rds_instance" {
 resource "aws_db_subnet_group" "db_subnet_group" {
   name       = "rds-subnet-group"
   subnet_ids = [
-    aws_subnet.public_subnets["pub_subnet_1a"].id,
+    var.public_subnet_ids[0],
     aws_subnet.private_subnets_1["priv_subnet_1a"].id
   ]
 

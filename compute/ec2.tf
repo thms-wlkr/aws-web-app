@@ -19,7 +19,7 @@ resource "local_file" "private_key" {
 resource "aws_instance" "web_server" {
   instance_type   = var.instance_type  # the type of instance to launch
   ami             = var.ami_id  # AMI id to use for the instance
-  security_groups = [aws_security_group.public_sg.id]  # attach the security group
+  security_groups = var.public_sg_id  # attach the security group
   key_name        = aws_key_pair.ec2_key.key_name  # associate the key pair
   subnet_id       = aws_subnet.public_subnets["pub_subnet_1a"].id  # launch the instance in the specified subnet
   user_data       = base64encode(file("userdata.sh"))  # provide user data script
@@ -38,7 +38,7 @@ resource "aws_launch_template" "web_template" {
   key_name      = aws_key_pair.ec2_key.key_name
 
   network_interfaces {
-    security_groups = [aws_security_group.public_sg.id]  # attach the security group
+    security_groups = var.public_sg_id # attach the security group
   }
 
   user_data = base64encode(file("userdata.sh"))  # provide user data script
@@ -58,7 +58,7 @@ resource "aws_autoscaling_group" "web_asg" {
   desired_capacity    = 1  # desired number of instances
   max_size            = 2  # max number of instances
   min_size            = 1  # min number of instances
-  vpc_zone_identifier = [aws_subnet.public_subnets["pub_subnet_1a"].id, aws_subnet.public_subnets["pub_subnet_1b"].id]  # subnets for the asg
+  vpc_zone_identifier = var.public_subnet_ids  # subnets for the asg
 
   launch_template {
     id      = aws_launch_template.web_server_template.id
@@ -99,7 +99,7 @@ resource "aws_launch_template" "backend_template" {
 
   network_interfaces {
     associate_public_ip_address = false # do not assign public IP addresses
-    security_groups             = [aws_security_group.backend_sg.id]  # security group for network access
+    security_groups             = var.backend_sg_id  # security group for network access
     subnet_id                   = aws_subnet.private_subnet_1["priv_subnet_1a"].id
   }
 

@@ -2,7 +2,7 @@ resource "aws_lb" "app_lb" {
   name               = "app-lb"
   internal           = false     # whether the ALB is internal (false meaning it's internet-facing)
   load_balancer_type = "application"  # type of load balancer (application for HTTP/HTTPS)
-  security_groups    = [aws_security_group.public_sg.id]  # security groups associated with the ALB
+  security_groups    = var.public_sg_id  # security groups associated with the ALB
   subnets = [  # list of subnets where the ALB will be deployed
     aws_subnet.public_subnets["pub_subnet_1a"].id,
     aws_subnet.public_subnets["pub_subnet_1b"].id

@@ -24,6 +24,21 @@ variable "allowed_ssh_cidr" {
 }
 
 variable "rds_instance_class" {
-  description = "The instance class for the DB instance"
+  description = "the instance class for the DB instance"
   default     = "db.t3.micro"
+}
+
+variable "public_sg_id" {
+  description = "the ID of the public security group"
+  type        = string
+}
+
+variable "backend_sg_id" {
+  description = "the ID of the backend security group"
+  type        = string
+}
+
+variable "public_subnet_ids" {
+  description = "list of public subnet IDs"
+  type        = list(string)
 }

@@ -1,6 +1,6 @@
 resource "aws_cloudfront_distribution" "cf_distribution" {
   origin {
-    domain_name = aws_lb.app_lb.dns_name   # origin domain name is set to the DNS name of the ALB
+    domain_name = var.lb_dns_name  # origin domain name is set to the DNS name of the ALB
     origin_id   = "alb-origin"
 
     # Configure custom origin settings for the ALB
