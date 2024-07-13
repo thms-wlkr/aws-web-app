@@ -7,17 +7,17 @@ output "public_subnet_ids" {
 }
 
 output "private_subnet_ids_1" {
-  value = aws_subnet.demo_priv_subnet_1[*].id
+  value = aws_subnet.priv_subnet_1[*].id
 }
 
 output "private_subnet_ids_2" {
-  value = aws_subnet.demo_priv_subnet_2[*].id
+  value = aws_subnet.priv_subnet_2[*].id
 }
 
-output "public_sg_id" {
+output "public_sg" {
   value = aws_security_group.public_sg.id
 }
 
-output "backend_sg_id" {
+output "backend_sg" {
   value = aws_security_group.backend_sg.id
 }

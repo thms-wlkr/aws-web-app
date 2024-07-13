@@ -4,8 +4,8 @@ resource "aws_lb" "app_lb" {
   load_balancer_type = "application"  # type of load balancer (application for HTTP/HTTPS)
   security_groups    = var.public_sg_id  # security groups associated with the ALB
   subnets = [  # list of subnets where the ALB will be deployed
-    aws_subnet.public_subnets["pub_subnet_1a"].id,
-    aws_subnet.public_subnets["pub_subnet_1b"].id
+    var.public_subnet_ids[0],
+    var.public_subnet_ids[1]
   ]
 
   enable_deletion_protection = false  # disable deletion protection for the ALB (not required for this demo project)

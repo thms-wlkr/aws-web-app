@@ -21,7 +21,7 @@ resource "aws_instance" "web_server" {
   ami             = var.ami_id  # AMI id to use for the instance
   security_groups = var.public_sg_id  # attach the security group
   key_name        = aws_key_pair.ec2_key.key_name  # associate the key pair
-  subnet_id       = aws_subnet.public_subnets["pub_subnet_1a"].id  # launch the instance in the specified subnet
+  subnet_id       = var.public_subnets_id[0]  # launch the instance in the specified subnet
   user_data       = base64encode(file("userdata.sh"))  # provide user data script
 
   tags = {

@@ -6,7 +6,7 @@ module "compute" {
   source = "./compute"
   public_sg_id = module.network.public_sg
   backend_sg_id = module.network.backend_sg
-  public_subnet_ids = module.network.public_subnet
+  public_subnet_ids = module.network.public_subnet_ids
 }
 
 module "cloudfront" {

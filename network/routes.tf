@@ -27,13 +27,13 @@ resource "aws_route_table" "private_route_table" {
 }
 
 resource "aws_route_table_association" "public" {
-  for_each = aws_subnet.public_subnets # iterate over each public subnet
+  for_each = aws_subnet.public_subnet # iterate over each public subnet
   subnet_id = each.value.id # associate each subnet with the public route table
   route_table_id = aws_route_table.public_route_table.id # public route table id
 }
 
 locals {
-  all_private_subnets = merge(aws_subnet.demo_priv_subnet_1, aws_subnet.demo_priv_subnet_2) # combine all private subnets for reference, instead of duplicating code.
+  all_private_subnets = merge(aws_subnet.priv_subnet_1, aws_subnet.priv_subnet_2) # combine all private subnets for reference, instead of duplicating code.
 }
 
 resource "aws_route_table_association" "private" {
