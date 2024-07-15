@@ -11,8 +11,8 @@ module "compute" {
   private_subnet_ids_1 = module.network.private_subnet_ids_1
 }
 
-module "cloudfront" {
-  source      = "./cloudfront"
+module "cdn" {
+  source      = "./cdn"
   lb_dns_name = module.compute.lb_dns_name
 }
 
