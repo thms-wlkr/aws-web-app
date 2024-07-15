@@ -1,3 +1,7 @@
+########################################################################
+####################        CLOUDFRONT        ##########################
+########################################################################
+
 resource "aws_cloudfront_distribution" "cf_distribution" {
   origin {
     domain_name = var.lb_dns_name  # origin domain name is set to the DNS name of the ALB
@@ -47,6 +51,10 @@ resource "aws_cloudfront_distribution" "cf_distribution" {
     cloudfront_default_certificate = true
   }
 }
+
+########################################################################
+####################         WEB ACL          ##########################
+########################################################################
 
 # AWS WAFv2 Web ACL configuration
 resource "aws_wafv2_web_acl" "web_acl" {
