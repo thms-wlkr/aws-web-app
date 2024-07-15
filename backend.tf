@@ -25,8 +25,8 @@ resource "aws_s3_bucket" "tf_state" {
   bucket = "tf-state-bucket"
 
   tags = {
-    name        = "terraform state bucket"
-    terraform   = "true"
+    name      = "terraform state bucket"
+    terraform = "true"
   }
 }
 
@@ -59,7 +59,7 @@ resource "aws_dynamodb_table" "tf_lock" {
   }
 
   tags = {
-    name        = "terraform lock table"
-    terraform   = "true"
+    name      = "terraform lock table"
+    terraform = "true"
   }
 }
