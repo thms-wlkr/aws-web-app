@@ -3,15 +3,15 @@ output "vpc_id" {
 }
 
 output "public_subnet_ids" {
-  value = aws_subnet.public_subnet[*].id
+  value = [for _, subnet in aws_subnet.public_subnet : subnet.id] # iterates over each subnet in aws_subnet.public_subnet, extracting the id attribute
 }
 
 output "private_subnet_ids_1" {
-  value = aws_subnet.priv_subnet_1[*].id
+  value = { for k, v in aws_subnet.priv_subnet_1 : k => v.id } # constructs a key-value pair where the key is k (the subnet name) and the value is v.id (the ID of the subnet)
 }
 
 output "private_subnet_ids_2" {
-  value = aws_subnet.priv_subnet_2[*].id
+  value = { for k, v in aws_subnet.priv_subnet_2 : k => v.id }
 }
 
 output "public_sg" {

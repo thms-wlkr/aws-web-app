@@ -3,10 +3,10 @@ resource "aws_db_instance" "rds_instance" {
   db_name              = "demo-db"
   engine               = "mysql"                     # database engine type
   engine_version       = "8.0"                       # database engine version
-  instance_class       = var.rds_instance_class               # Instance type for the RDS instance
+  instance_class       = var.rds_instance_class      # instance type for the RDS instance
   username             = "thomasdemo"
-  password             = "foobarbaz"
-  parameter_group_name = "default.mysql8.0"          #parameter group for configuration
+  password             = "password"
+  parameter_group_name = "default.mysql8.0"          # parameter group for configuration
   skip_final_snapshot  = true                        # skip taking a final snapshot before deletion
 
   tags = {
@@ -20,7 +20,7 @@ resource "aws_db_subnet_group" "db_subnet_group" {
   name       = "rds-subnet-group"
   subnet_ids = [
     var.public_subnet_ids[0],
-    aws_subnet.private_subnets_1["priv_subnet_1a"].id
+    var.private_subnet_ids_1["priv_subnet_1a"]
   ]
 
   tags = {

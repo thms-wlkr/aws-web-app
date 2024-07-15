@@ -3,6 +3,11 @@ variable "ami_id" {
   default     = "ami-04ff98ccbfa41c9ad"
 }
 
+variable "vpc_id" {
+  description = "the ID of the vpc"
+  type        = string
+}
+
 variable "instance_type" {
   description = "EC2 instance type"
   default     = "t2.micro"
@@ -41,4 +46,9 @@ variable "backend_sg_id" {
 variable "public_subnet_ids" {
   description = "list of public subnet IDs"
   type        = list(string)
+}
+
+variable "private_subnet_ids_1" {
+  description = "A map of private subnet IDs"
+  type        = map(string)
 }
